@@ -3,26 +3,54 @@
 <head>
   <title>Bracelet Images</title>
   <style>
-    img {
-      height: 150px;
-      margin: 10px;
-      border: 1px solid #ddd;
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <h1>Bracelet Images</h1>
-  <div id="image-container"></div>
-  
+  <h1>Bracelet Gallery</h1>
+  <div class="gallery" id="image-container"></div>
+
   <script>
-    // Auto-generate image displays (not just links)
     const container = document.getElementById('image-container');
+    
+    // Generate image elements for 1.jpg to 30.jpg
     for (let i = 1; i <= 30; i++) {
       const img = document.createElement('img');
-      img.src = `${i}.png`;  // Updated path - no 'images/' prefix
+      img.src = `${i}.jpg`;  // Using .jpg extension
       img.alt = `Bracelet ${i}`;
-      img.title = `Bracelet ${i}`;
-      container.appendChild(img);
+      img.loading = "lazy";  // Better performance
+      
+      // Create a wrapper div for each image
+      const card = document.createElement('div');
+      card.className = 'image-card';
+      card.appendChild(img);
+      
+      // Add image number label
+      const label = document.createElement('p');
+      label.textContent = `Bracelet ${i}`;
+      label.style.textAlign = 'center';
+      card.appendChild(label);
+      
+      container.appendChild(card);
     }
   </script>
 </body>
