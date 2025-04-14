@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bracelet Images</title>
+  <style>
+    img {
+      height: 150px;
+      margin: 10px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bracelet Images</h1>
+  <div id="image-container"></div>
+  
+  <script>
+    // Auto-generate image displays (not just links)
+    const container = document.getElementById('image-container');
+    for (let i = 1; i <= 30; i++) {
+      const img = document.createElement('img');
+      img.src = `${i}.png`;  // Updated path - no 'images/' prefix
+      img.alt = `Bracelet ${i}`;
+      img.title = `Bracelet ${i}`;
+      container.appendChild(img);
+    }
+  </script>
+</body>
+</html>
